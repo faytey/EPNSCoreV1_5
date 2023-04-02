@@ -277,7 +277,7 @@ The Initialize function acts as the constructor and handles all the logic for th
 - Address of aDai token
 - Referral code
 
-After which the channel is successfully created.
+After which the contract is successfully initialized with these values saved to the storage of the contract.
 
 #### 2. Setter & Helper Functions
 
@@ -435,7 +435,7 @@ function getChannelState(address _channel)
     }
 ```
 
-The function getChannelState returns the state of the channel if active, not active or deactivated.
+The function getChannelState checks and returns the state of the channel if it's current state is active, not active, deactivated or blocked.
 
 ---
 
@@ -467,7 +467,7 @@ function updateChannelMeta(
     }
 ```
 
-The function updateChannelMeta sets the logic that handles the update of channel information by the admin e.g. name of channel, description, logo etc.
+The function updateChannelMeta sets the logic that handles the update of channel information by the admin e.g. name of channel, description, logo etc. It checks that the caller of the function is the approved admin and that the required fees are available, then adds the update fees to the protocol pool fees.
 
 ---
 
@@ -500,7 +500,7 @@ function createChannelWithPUSH(
     }
 ```
 
-The function createChannelWithPUSH handles the logic of channel creation to ensure that subscribers create channel with atleast the minimum fees specified.
+The function createChannelWithPUSH handles the logic of channel creation to ensure that subscribers create channel with atleast the minimum fees specified. It checks that the amount passed in is equal to or above the add channel minimum fee amount, if true it successfully collects the fees and adds it to the pool fees and creates the channel
 
 ---
 
@@ -555,7 +555,7 @@ function migrateChannelData(
     }
 ```
 
-The function migrateChannelData migrates a channel from one network to another with the same channel information present.
+The function migrateChannelData migrates a channel from one network to another with the same channel information present. It checks that the channel must have atleast one user and the information passed is adequate with what is available in the channel they're migrating from.
 
 ---
 
@@ -677,7 +677,7 @@ function destroyTimeBoundChannel(address _channelAddress)
     }
 ```
 
-The function destroyTimeBoundChannel is called upon to destroy the channel when it's reached it's expiry time
+The function destroyTimeBoundChannel is called upon to destroy the channel when it's reached it's expiry time, it checks that the channel has expired first then also checks that it's been 2 weeks after expiration date thenit can be called successfully, upon being called it destroys the channel and transfers the refundable amount to the caller, the caller being the admin of the channel.
 
 ---
 
@@ -719,7 +719,7 @@ function createChannelSettings(
     }
 ```
 
-The function createChannelSettings creates the channel settings that would be available to users of the particular channel.
+The function createChannelSettings creates the channel settings that would be available to users of the particular channel. It sets the notification options available to the users in a channel
 
 ---
 
@@ -756,7 +756,7 @@ function deactivateChannel()
     }
 ```
 
-The deactivateChannel function contains the logic that deactivates a channel after which transfer out the tokens held within the contract to the admin.
+The deactivateChannel function contains the logic that deactivates a channel after which transfer out the refundable tokens held within the contract to the admin.
 
 ---
 
@@ -801,7 +801,7 @@ function reactivateChannel(uint256 _amount)
     }
 ```
 
-The function reactivateChannel is called upon when a deactivated account needs reactivation and has it's reactivation fees present
+The function reactivateChannel is called upon when a deactivated account needs reactivation and has it's reactivation fees present then accepts the amount adds it to it's channel pool contribution and reactivate the channel.
 
 ---
 
@@ -838,7 +838,7 @@ function blockChannel(address _channelAddress)
     }
 ```
 
-The blockChannel function handles the logic to block channels who act maliciously.
+The blockChannel function handles the logic to block channels who act maliciously and doesn't refund the channel's pool contribution because the channel was blocked.
 
 ---
 
@@ -897,7 +897,7 @@ function transferChannelOwnership(
     }
 ```
 
-This function transferChannelOwnership contains the logic for transferring the ownership of a particular channel to another address callable by only admin
+This function transferChannelOwnership contains the logic for transferring the ownership of a particular channel to another address callable by only admin, it checks that the caller of the function is approved and the new admin address is valid and acceptable to be admin.
 
 ---
 
@@ -1009,7 +1009,7 @@ The function batchRevokeVerification handles the logic that revokes the verified
     }
 ```
 
-The function verifyChannel handles the logic that verifies a channel.
+The function verifyChannel handles the logic that verifies a channel, it checks that the channel is currently not verified and has the activated channel status.
 
 ---
 
