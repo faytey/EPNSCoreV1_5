@@ -1058,11 +1058,15 @@ Based of on the review I performed on this contract, i came across some minor in
 2. EPNSCoreV1_5 line 22 IERC20 import could be removed.
 3. EPNSCoreV1_5 line 23 SafeERC20 import could be removed.
 4. EPNSCoreV1_5 line 33 IERC20 could be removed and replaced by IPUSH.
-5. EPNSCoreV1_5 line 154 WETHAddress import could be removed as it is not used and the current accepted payment token is PUSH and also line 77 of EPNSCoreStorageV1_5 should get updated.
-6. EPNSCoreV1_5 line 157 DaiAddress import could be removed as it is not used and the current accepted payment token is PUSH and also line 75 of EPNSCoreStorageV1_5 it should get updated.
-7. EPNSCoreV1_5 line 158 aDaiAddress import could be removed as it is not used and the current accepted payment token is PUSH and also line 76 of EPNSCoreStorageV1_5 it should get updated.
-8. EPNSCoreStorageV1_5 line 33 EPNS_CORE_V2 could be replaced with EPNS_CORE_V2
+5. EPNSCoreV1_5 line 154 WETHAddress import could be removed as it is not used and the current accepted payment token is PUSH
+6. Line 77 of EPNSCoreStorageV1_5 should get updated.
+7. EPNSCoreV1_5 line 157 DaiAddress import could be removed as it is not used and the current accepted payment token is PUSH
+8. Line 75 of EPNSCoreStorageV1_5 it should get updated.
+9. EPNSCoreV1_5 line 158 aDaiAddress import could be removed as it is not used and the current accepted payment token is PUSH
+10. Line 76 of EPNSCoreStorageV1_5 it should get updated.
+11. EPNSCoreStorageV1_5 line 33 EPNS_CORE_V2 could be replaced with EPNS_CORE_V2
+12. EPNSCoreV1_5 line 96 - line 101 with sets the weth address could be removed
 
 ## RECOMMENDATIONS
 
-I hereby recommend that the above observations be look into and considered. Also be implemented.
+My recommendations are based on the above observations but are not ultimate, that these observations be look into and considered, if found worthy then get implemented for better code optimization and clarity.
